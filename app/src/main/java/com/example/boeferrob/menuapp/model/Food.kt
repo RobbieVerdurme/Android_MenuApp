@@ -1,4 +1,4 @@
-package com.example.boeferrob.menuapp
+package com.example.boeferrob.menuapp.model
 
 import java.io.Serializable
 

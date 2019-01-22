@@ -2,32 +2,52 @@
 
 buildscript {
     ext.versions = [
+            //android application
+            'gradle'        : '3.2.1',
             'architecture'  : '1.1.1',
-            'espresso_version' : '3.0.2'
+            'targetSdk'     : 28,
+            'minSdk'        : 19,
+            'suport'        : '28.0.0',
+
+            //esspresso testing
+            'espresso_version': '3.0.2',
+
+            //kotlin
+            'kotlin'        : '1.3.11',
+
+            //google
+            'googleServices': '4.0.1',
+
+            //dokka
+            'dokka'         : '0.9.17',
+
+            //firebase
+            'firebaseUIAuth': '4.3.1',
+            'firebaseAuth'  : '16.1.0',
+            'firebaseUIFacebookLogin' : '4.39.0',
+            'firebaseDatabase' : '16.0.5',
+            'firebaseCore'  : '16.0.6'
     ]
 
-    ext.kotlin_version = '1.3.11'
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.google.gms:google-services:4.0.1'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath "com.android.tools.build:gradle:$versions.gradle"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+        classpath "com.google.gms:google-services:$versions.googleServices"
+        classpath "org.jetbrains.dokka:dokka-android-gradle-plugin:$versions.dokka"
     }
 }
 
-allprojects {
-    repositories {
-        google()
-        jcenter()
+    allprojects {
+        repositories {
+            google()
+            jcenter()
+        }
     }
-}
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
+    task clean(type: Delete) {
+        delete rootProject.buildDir
+    }

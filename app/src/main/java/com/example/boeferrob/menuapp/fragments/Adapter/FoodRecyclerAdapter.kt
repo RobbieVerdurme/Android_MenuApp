@@ -10,13 +10,18 @@ import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.TextView
-import com.example.boeferrob.menuapp.Food
+import com.example.boeferrob.menuapp.model.Food
 import com.example.boeferrob.menuapp.R
 import com.example.boeferrob.menuapp.activities.FoodActivity
 import com.example.boeferrob.menuapp.ui.FoodListFragmentViewModel
 import com.example.boeferrob.menuapp.utils.FOOD_POSITION
 import com.example.boeferrob.menuapp.utils.LOGIN
 
+/**
+ * this is a adapter for the food list fragment
+ * the adapter gives the food a layout and fills it with the corresponding food
+ * the adapter also has a filter build in to filter the food or ingredient that contains with the given text
+ */
 class FoodRecyclerAdapter(private val context : Context, private var food: ArrayList<Food>, private  val viewModel: FoodListFragmentViewModel, private val logedin:Int) : Filterable, RecyclerView.Adapter<FoodRecyclerAdapter.ViewHolder>(){
 
     /************************************************variablen*********************************************************/

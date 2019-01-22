@@ -16,6 +16,10 @@ import com.example.boeferrob.menuapp.utils.FOOD_POSITION
 import com.example.boeferrob.menuapp.utils.POSITION_NOT_SET
 import kotlinx.android.synthetic.main.fragment_decide.*
 
+/**
+ * here in the decide fragment there is a button and a label that correspond with each other
+ * if the button is pressed the name of the label is changed and the user can navigate to the recipe
+ */
 class DecideFragment : BaseFragment() {
     /************************************************variablen*********************************************************/
     private var listener: OnFragmentInteractionListener? = null
@@ -75,9 +79,9 @@ class DecideFragment : BaseFragment() {
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
+         *
          * @return A new instance of fragment DecideFragment.
          */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance() =
             DecideFragment().apply {

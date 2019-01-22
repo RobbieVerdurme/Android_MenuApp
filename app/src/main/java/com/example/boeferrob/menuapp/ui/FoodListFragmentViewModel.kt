@@ -3,9 +3,12 @@ package com.example.boeferrob.menuapp.ui
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.example.boeferrob.menuapp.Food
+import com.example.boeferrob.menuapp.model.Food
 import com.example.boeferrob.menuapp.network.Repository
 
+/**
+ * the purpose foodlistFragementViewmodel is to provide the foodlist fragment with the data it needs
+ */
 class FoodListFragmentViewModel:ViewModel(){
     /************************************************variablen*********************************************************/
     private var foodList: MutableLiveData<List<Food>> = Repository.getFoodList()

@@ -20,7 +20,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Filterable
-import com.example.boeferrob.menuapp.Food
+import com.example.boeferrob.menuapp.model.Food
 import com.example.boeferrob.menuapp.R
 import com.example.boeferrob.menuapp.activities.FoodActivity
 import com.example.boeferrob.menuapp.fragments.Adapter.FoodRecyclerAdapter
@@ -29,6 +29,11 @@ import com.example.boeferrob.menuapp.utils.LOGIN
 import com.example.boeferrob.menuapp.utils.POSITION_NOT_SET
 import kotlinx.android.synthetic.main.fragment_food_list.*
 
+/**
+ * the foodlist fragement is a fragement that gives the food in a list order with a recyclerview
+ * the food can be deleted with a single swipe and undone with a snackbar undo
+ * there is a filter in the recyclerview that filters on textchanged of the textview filter
+ */
 class FoodListFragment : BaseFragment() {
     /************************************************variablen*********************************************************/
     private var listener: OnFragmentInteractionListener? = null
@@ -160,7 +165,6 @@ class FoodListFragment : BaseFragment() {
          *
          * @return A new instance of fragment FoodListFragment.
          */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(logedin: Int) =
             FoodListFragment().apply {

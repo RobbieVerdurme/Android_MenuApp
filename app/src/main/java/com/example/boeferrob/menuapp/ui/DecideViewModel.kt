@@ -2,11 +2,14 @@ package com.example.boeferrob.menuapp.ui
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import com.example.boeferrob.menuapp.Food
+import com.example.boeferrob.menuapp.model.Food
 import com.example.boeferrob.menuapp.network.Repository
 import com.example.boeferrob.menuapp.utils.POSITION_NOT_SET
 import kotlin.random.Random
 
+/**
+ * the purpose decideViewmodel is to provide the decide fragment with the data it needs
+ */
 class DecideViewModel: ViewModel() {
     /************************************************variablen*********************************************************/
     private var foodList:MutableLiveData<List<Food>> = Repository.getFoodList()

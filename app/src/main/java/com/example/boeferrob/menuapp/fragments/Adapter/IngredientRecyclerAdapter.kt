@@ -8,11 +8,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.example.boeferrob.menuapp.Ingredient
+import com.example.boeferrob.menuapp.model.Ingredient
 import com.example.boeferrob.menuapp.R
 import com.example.boeferrob.menuapp.utils.MESUREMENTLIST
 import kotlinx.android.synthetic.main.dialog_ingredient.view.*
 
+/**
+ * this is a adapter for the food activity
+ * the adapter gives the ingredients a layout
+ */
 class IngredientRecyclerAdapter(private val context : Context, private  val ingredient: MutableList<Ingredient>) : RecyclerView.Adapter<IngredientRecyclerAdapter.ViewHolder>() {
     /************************************************variablen*********************************************************/
     private val layoutInflater = LayoutInflater.from(context)

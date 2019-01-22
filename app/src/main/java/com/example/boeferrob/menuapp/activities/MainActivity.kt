@@ -15,6 +15,10 @@ import com.example.boeferrob.menuapp.utils.LOGIN
 import com.example.boeferrob.menuapp.utils.POSITION_NOT_SET
 import kotlinx.android.synthetic.main.activity_main.*
 
+/**
+ * this is the overview of the app
+ * here you have 2 pages(Decide and foodlist)
+ */
 class MainActivity : AppCompatActivity(), DecideFragment.OnFragmentInteractionListener, FoodListFragment.OnFragmentInteractionListener{
     /************************************************variablen*********************************************************/
     private var logedin: Int = POSITION_NOT_SET

@@ -15,6 +15,7 @@ import android.view.View
 import android.widget.TextView
 import com.example.boeferrob.menuapp.activities.MainActivity
 import com.example.boeferrob.menuapp.fragments.Adapter.FoodRecyclerAdapter
+import com.example.boeferrob.menuapp.model.Ingredient
 import org.hamcrest.CoreMatchers
 import org.hamcrest.Description
 import org.hamcrest.Matcher
@@ -116,7 +117,8 @@ class MainActivityTest {
         private const val descriptionFood = "ronde vorm met ingredienten op"
         private val ingredientListFood = listOf<Ingredient>(
                                                 Ingredient("Tomaat",3,"Unit"),
-                                                Ingredient("Peperoni",3,"Unit"))
+                                                Ingredient("Peperoni",3,"Unit")
+        )
     }
 }
 

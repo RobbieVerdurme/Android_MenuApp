@@ -11,6 +11,10 @@ import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import kotlinx.android.synthetic.main.activity_sign_in.*
 
+/**
+ * this is the activity the application will go to on launch
+ * the use of this activity is to provide the user with a login screen so they can access the database
+ */
 class SignInActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

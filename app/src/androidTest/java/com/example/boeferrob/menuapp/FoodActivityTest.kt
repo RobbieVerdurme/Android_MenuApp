@@ -9,6 +9,7 @@ import android.support.test.espresso.matcher.ViewMatchers.hasErrorText
 import android.support.test.espresso.matcher.ViewMatchers.withId
 import android.support.test.runner.AndroidJUnit4
 import com.example.boeferrob.menuapp.activities.FoodActivity
+import com.example.boeferrob.menuapp.model.Ingredient
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -60,6 +61,7 @@ class FoodActivityTest {
         private const val descriptionFood = "ronde vorm met ingredienten op"
         private val ingredientListFood = listOf<Ingredient>(
             Ingredient("Tomaat",3,"Unit"),
-            Ingredient("Peperoni",3,"Unit"))
+            Ingredient("Peperoni",3,"Unit")
+        )
     }
 }

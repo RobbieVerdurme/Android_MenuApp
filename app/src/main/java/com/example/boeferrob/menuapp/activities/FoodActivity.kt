@@ -19,8 +19,8 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import com.example.boeferrob.menuapp.Food
-import com.example.boeferrob.menuapp.Ingredient
+import com.example.boeferrob.menuapp.model.Food
+import com.example.boeferrob.menuapp.model.Ingredient
 import com.example.boeferrob.menuapp.R
 import com.example.boeferrob.menuapp.fragments.Adapter.IngredientRecyclerAdapter
 import com.example.boeferrob.menuapp.ui.FoodActivityViewModel
@@ -29,6 +29,9 @@ import kotlinx.android.synthetic.main.activity_food.*
 import kotlinx.android.synthetic.main.content_foodactivity.*
 import kotlinx.android.synthetic.main.item_add_ingredient_list.*
 
+/**
+ * See the selected recipe or add a recipe
+ */
 class FoodActivity : AppCompatActivity() {
     /************************************************variablen*********************************************************/
     private var foodPosition = POSITION_NOT_SET
@@ -44,23 +47,33 @@ class FoodActivity : AppCompatActivity() {
         toolbar.titleMarginStart = 50
         setSupportActionBar(toolbar)
 
-        //create viewmodel
+        /**
+         * create viewmodel
+         */
         foodActivityViewModel = ViewModelProviders.of(this).get(FoodActivityViewModel::class.java)
 
-        //food position in the list
+        /**
+         * food position in the list
+         */
         foodPosition = savedInstanceState?.getInt(FOOD_POSITION, POSITION_NOT_SET)?:intent.getIntExtra(FOOD_POSITION, POSITION_NOT_SET)
 
-        //check if logged in
+        /**
+         * check if logged in
+         */
         logedin = intent.getIntExtra(LOGIN, POSITION_NOT_SET)
 
-        //get food from list
+        /**
+         *get food from list
+         */
         if(foodPosition != POSITION_NOT_SET){
             food = foodActivityViewModel.getFood(foodPosition)
         }else {
             food = Food("","", ArrayList<Ingredient>(), "")
         }
 
-        //display the food
+        /**
+         * display the food on the screen using the correct input fields
+         */
         displayFood()
 
     }
@@ -155,7 +168,9 @@ class FoodActivity : AppCompatActivity() {
         val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
         itemTouchHelper.attachToRecyclerView(listFoodIngredients)
 
-/////////////////// add ingredient
+        /**
+         * making the add bar to add ingredients
+         */
         makeAddIngredient(adapter)
     }
 
@@ -166,10 +181,12 @@ class FoodActivity : AppCompatActivity() {
             //check if fields are filled in
             if(checkRequiredFieldsIngredient(txtName, txtQuantity)){
                 //adding ingredient
-                food.ingredients.add(Ingredient(
+                food.ingredients.add(
+                    Ingredient(
                     txtName.text.toString(),
                     txtQuantity.text.toString().toInt(),
-                    spinnerMesurement.selectedItem.toString()))
+                    spinnerMesurement.selectedItem.toString())
+                )
                 adapter.notifyDataSetChanged()
 
                 //clear textfields

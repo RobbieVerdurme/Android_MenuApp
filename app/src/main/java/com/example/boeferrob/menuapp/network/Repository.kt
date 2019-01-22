@@ -1,13 +1,14 @@
 package com.example.boeferrob.menuapp.network
 
 import android.arch.lifecycle.MutableLiveData
-import android.os.AsyncTask
-import android.service.autofill.LuhnChecksumValidator
-import android.support.v4.app.ActivityCompat.startActivityForResult
-import com.example.boeferrob.menuapp.Food
+import com.example.boeferrob.menuapp.model.Food
 import com.google.firebase.database.*
 import java.util.ArrayList
 
+/**
+ * this is the repository that communicates with the backend system
+ * the repository is responsible for the get/update/set calls to the database
+ */
 object Repository {
     private var liveFoodList :MutableLiveData<List<Food>> = MutableLiveData<List<Food>>()
     private var foodList = ArrayList<Food>()
@@ -41,7 +42,7 @@ object Repository {
         return liveFoodList
     }
 
-    fun remove(food:Food){
+    fun remove(food: Food){
         databaseRefrenceData.child("Food").child(food.key!!).removeValue()
     }
 
