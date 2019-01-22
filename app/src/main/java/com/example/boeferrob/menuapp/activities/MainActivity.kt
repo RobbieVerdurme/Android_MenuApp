@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity(), DecideFragment.OnFragmentInteractionLi
         viewpager_main.adapter = object : FragmentPagerAdapter(supportFragmentManager) {
             override fun getItem(p0: Int): Fragment {
                 when(p0){
-                    BaseFragment.DECIDE -> return DecideFragment.newInstance(logedin)
+                    BaseFragment.DECIDE -> return DecideFragment.newInstance()
                     BaseFragment.FOODLIST -> return FoodListFragment.newInstance(logedin)
                 }
                 return DecideFragment()

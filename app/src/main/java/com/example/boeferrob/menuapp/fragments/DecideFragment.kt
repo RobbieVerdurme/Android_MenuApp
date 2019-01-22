@@ -79,7 +79,7 @@ class DecideFragment : BaseFragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(logedin: Int) =
+        fun newInstance() =
             DecideFragment().apply {
                 arguments = Bundle().apply {
                 }

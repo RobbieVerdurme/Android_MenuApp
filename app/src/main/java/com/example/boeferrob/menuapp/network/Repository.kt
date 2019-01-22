@@ -13,7 +13,6 @@ object Repository {
     private var foodList = ArrayList<Food>()
     private val firebaseDatabase = FirebaseDatabase.getInstance()
     private val databaseRefrenceData = firebaseDatabase.getReference("FoodList")
-    private val databaseRefrenceAuth = firebaseDatabase.getReference("Users")
 
     init {
         databaseRefrenceData.keepSynced(true)

@@ -33,8 +33,6 @@ class FoodActivity : AppCompatActivity() {
     /************************************************variablen*********************************************************/
     private var foodPosition = POSITION_NOT_SET
     private var logedin = POSITION_NOT_SET
-    private var swipeBackground: ColorDrawable = ColorDrawable(Color.parseColor("#FF0000"))
-    private lateinit var  deleteIcon: Drawable
     private lateinit var food: Food
     lateinit var foodActivityViewModel: FoodActivityViewModel
 
@@ -50,8 +48,9 @@ class FoodActivity : AppCompatActivity() {
         foodActivityViewModel = ViewModelProviders.of(this).get(FoodActivityViewModel::class.java)
 
         //food position in the list
-        foodPosition = savedInstanceState?.getInt(FOOD_POSITION, POSITION_NOT_SET)?:intent.getIntExtra(FOOD_POSITION,
-            POSITION_NOT_SET)
+        foodPosition = savedInstanceState?.getInt(FOOD_POSITION, POSITION_NOT_SET)?:intent.getIntExtra(FOOD_POSITION, POSITION_NOT_SET)
+
+        //check if logged in
         logedin = intent.getIntExtra(LOGIN, POSITION_NOT_SET)
 
         //get food from list
@@ -101,14 +100,14 @@ class FoodActivity : AppCompatActivity() {
     }
 
     private fun configAdapterListFoodIngredients(){
+        val swipeBackground: ColorDrawable = ColorDrawable(Color.parseColor("#FF0000"))
+        val  deleteIcon: Drawable = ContextCompat.getDrawable(this,R.drawable.ic_delete_black_24dp)!!
         val adapter = IngredientRecyclerAdapter(this,food.ingredients)
         val layouManager = LinearLayoutManager(this)
 
         listFoodIngredients.adapter = adapter
         listFoodIngredients.layoutManager = layouManager
         listFoodIngredients.addItemDecoration(DividerItemDecoration(listFoodIngredients.context, layouManager.orientation))
-
-        deleteIcon = ContextCompat.getDrawable(this,R.drawable.ic_delete_black_24dp)!!
 
         val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT){
             override fun onMove(p0: RecyclerView, p1: RecyclerView.ViewHolder, p2: RecyclerView.ViewHolder): Boolean {
@@ -155,7 +154,13 @@ class FoodActivity : AppCompatActivity() {
         }
         val itemTouchHelper = ItemTouchHelper(itemTouchHelperCallback)
         itemTouchHelper.attachToRecyclerView(listFoodIngredients)
+
 /////////////////// add ingredient
+        makeAddIngredient(adapter)
+    }
+
+
+    private fun makeAddIngredient(adapter: IngredientRecyclerAdapter){
         spinnerMesurement.adapter = ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, MESUREMENTLIST)
         imgAddIngredient.setOnClickListener {
             //check if fields are filled in

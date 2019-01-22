@@ -8,7 +8,6 @@ import com.example.boeferrob.menuapp.network.Repository
 class FoodActivityViewModel: ViewModel() {
     /************************************************variablen*********************************************************/
     private var foodList: MutableLiveData<List<Food>> = Repository.getFoodList()
-    private var foodListArrayList: ArrayList<Food>? = null
 
     /************************************************Methods***********************************************************/
     fun getLastIndexFood(): Int{
@@ -16,19 +15,13 @@ class FoodActivityViewModel: ViewModel() {
     }
 
     fun addFood(food: Food){
-        checkfoodListArrayList()
+        val foodListArrayList: ArrayList<Food>? = foodList.value as ArrayList<Food>
         foodListArrayList!!.add(food)
         foodList.value = foodListArrayList
     }
 
     fun saveFood(food: Food){
         Repository.save(food)
-    }
-
-    private fun checkfoodListArrayList(){
-        if(foodListArrayList.isNullOrEmpty()){
-            foodListArrayList = foodList.value as ArrayList<Food>
-        }
     }
 
     /***********************************************get & set**********************************************************/
