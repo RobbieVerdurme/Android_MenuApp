@@ -1,7 +1,13 @@
 package com.example.boeferrob.menuapp.model
 
-import java.io.Serializable
+import kotlinx.android.parcel.Parcelize
+import android.os.Parcelable
 
-data class Ingredient(var name: String, var quantity: Int, var measurement: String) : Serializable{
+@Parcelize
+data class Ingredient(
+    var name: String,
+    var quantity: Int,
+    var measurement: String) : Parcelable{
+
     constructor() : this("", 0,"") {}
 }

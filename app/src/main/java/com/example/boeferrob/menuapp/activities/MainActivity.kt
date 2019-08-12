@@ -49,11 +49,6 @@ class MainActivity : AppCompatActivity(), DecideFragment.OnFragmentInteractionLi
                     viewpager_main.currentItem = BaseFragment.FOODLIST
                     true
                 }
-                R.id.navigation_login -> {
-                    val intent = Intent(this, SignInActivity::class.java)
-                    startActivity(intent)
-                    true
-                }
                 else ->{
                     viewpager_main.currentItem = BaseFragment.DECIDE
                     true

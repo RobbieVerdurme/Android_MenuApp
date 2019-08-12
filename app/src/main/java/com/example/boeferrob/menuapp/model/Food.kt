@@ -1,9 +1,23 @@
 package com.example.boeferrob.menuapp.model
 
-import java.io.Serializable
+import android.arch.persistence.room.*
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+import java.util.*
 
-data class Food(var key:String? = null, var name: String, var ingredients: MutableList<Ingredient>, var discritpion: String) : Serializable {
-    constructor() : this("","", ArrayList<Ingredient>(), "") {}
+@Entity(tableName = "Food")
+@Parcelize
+data class Food(
+    @PrimaryKey(autoGenerate = true)
+    var key: Int,
+    var name: String,
+    @Ignore
+    var ingredients: MutableList<Ingredient> = mutableListOf(),
+    var discritpion: String) : Parcelable  {
+
+
+    constructor() : this(0,"", ArrayList<Ingredient>(), "")
+
     override fun toString(): String {
         return name
     }

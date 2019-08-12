@@ -64,12 +64,32 @@ dependencies {
     androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$versions.espresso_version"
     androidTestImplementation "com.android.support.test.espresso:espresso-intents:$versions.espresso_version"
 
-    //Firebase
-    implementation "com.google.firebase:firebase-database:$versions.firebaseDatabase"
-    implementation "com.google.firebase:firebase-core:$versions.firebaseCore"
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
+    implementation "com.squareup.retrofit2:converter-moshi:$versions.retrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
+
+    //okHttp
+    implementation "com.squareup.okhttp3:okhttp:$versions.okHttp"
+    implementation "com.squareup.okhttp3:logging-interceptor:$versions.okHttp"
+
+
+    //Room
+    implementation "android.arch.persistence.room:runtime:$versions.room_version"
+    annotationProcessor "android.arch.persistence.room:compiler:$versions.room_version" // For Kotlin use kapt instead of annotationProcessor
+    kapt "android.arch.persistence.room:compiler:$versions.room_version" // For Kotlin use kapt instead of annotationProcessor
+
+    //dagger
+    implementation "com.google.dagger:dagger:$versions.dagger"
+    implementation "com.google.dagger:dagger-android-support:$versions.dagger"
+    annotationProcessor "com.google.dagger:dagger-compiler:$versions.dagger"
+    implementation "com.google.dagger:dagger-android:$versions.dagger"
+    kapt "com.google.dagger:dagger-compiler:$versions.dagger"
+    kapt "com.google.dagger:dagger-android-processor:$versions.dagger"
 
     ///LiveData && Viewmodel
     implementation "android.arch.lifecycle:extensions:$versions.architecture"
+    annotationProcessor "android.arch.lifecycle:compiler:$versions.architecture"
 
     // Data binding
     annotationProcessor "com.android.databinding:compiler:3.1.4"

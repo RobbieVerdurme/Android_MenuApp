@@ -15,18 +15,28 @@ buildscript {
             //kotlin
             'kotlin'        : '1.3.11',
 
+            //room
+            'room_version' : "1.1.1",
+
+            //dagger
+            'dagger': '2.16',
+
             //google
             'googleServices': '4.0.1',
 
             //dokka
             'dokka'         : '0.9.17',
 
+            //retrofit
+            'retrofit'      : '2.3.0',
+
+            //okHttp
+            'okHttp'        : '3.11.0',
+
             //firebase
             'firebaseUIAuth': '4.3.1',
             'firebaseAuth'  : '16.1.0',
             'firebaseUIFacebookLogin' : '4.39.0',
-            'firebaseDatabase' : '16.0.5',
-            'firebaseCore'  : '16.0.6'
     ]
 
     repositories {

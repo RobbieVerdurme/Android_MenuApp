@@ -1,15 +1,50 @@
 package com.example.boeferrob.menuapp.network
 
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
+import android.content.Context
+import android.os.Debug
+import android.support.annotation.WorkerThread
+import com.example.boeferrob.menuapp.App
+import com.example.boeferrob.menuapp.RoomDatabase.Dao.FoodDao
+import com.example.boeferrob.menuapp.RoomDatabase.Database.FoodDatabase
 import com.example.boeferrob.menuapp.model.Food
-import com.google.firebase.database.*
-import java.util.ArrayList
 
 /**
  * this is the repository that communicates with the backend system
  * the repository is responsible for the get/update/set calls to the database
  */
-object Repository {
+class FoodRepository(private val foodDao: FoodDao) {
+    private var _allFood : LiveData<List<Food>>
+
+    init {
+        App.appComponent.inject(this)
+        _allFood = foodDao.getallFood()
+    }
+
+    @WorkerThread
+    fun insert(food: Food) {
+        foodDao.insert(food)
+    }
+
+    @WorkerThread
+    fun update(food: Food) {
+        foodDao.update(food)
+        //var foodindex = _allFood.value!!.indexOf(food)
+    }
+
+    @WorkerThread
+    fun delete(food: Food) {
+        foodDao.delete(food)
+    }
+
+    fun getAllFood(): LiveData<List<Food>> {
+        return _allFood
+    }
+
+}
+    /*
+    object Repostory{
     private var liveFoodList :MutableLiveData<List<Food>> = MutableLiveData<List<Food>>()
     private var foodList = ArrayList<Food>()
     private val firebaseDatabase = FirebaseDatabase.getInstance()
@@ -58,3 +93,4 @@ object Repository {
 
     /////test
 }
+*/

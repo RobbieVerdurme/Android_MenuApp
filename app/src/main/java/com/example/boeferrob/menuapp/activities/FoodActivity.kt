@@ -68,7 +68,7 @@ class FoodActivity : AppCompatActivity() {
         if(foodPosition != POSITION_NOT_SET){
             food = foodActivityViewModel.getFood(foodPosition)
         }else {
-            food = Food("","", ArrayList<Ingredient>(), "")
+            food = Food(0,"", ArrayList<Ingredient>(), "")
         }
 
         /**

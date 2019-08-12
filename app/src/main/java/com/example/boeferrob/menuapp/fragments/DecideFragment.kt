@@ -1,5 +1,6 @@
 package com.example.boeferrob.menuapp.fragments
 
+import android.app.Application
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
@@ -14,6 +15,7 @@ import com.example.boeferrob.menuapp.activities.FoodActivity
 import com.example.boeferrob.menuapp.ui.DecideViewModel
 import com.example.boeferrob.menuapp.utils.FOOD_POSITION
 import com.example.boeferrob.menuapp.utils.POSITION_NOT_SET
+import com.google.android.gms.common.util.CollectionUtils
 import kotlinx.android.synthetic.main.fragment_decide.*
 
 /**
@@ -28,7 +30,7 @@ class DecideFragment : BaseFragment() {
 
     /************************************************Override**********************************************************/
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        decideViewModel = ViewModelProviders.of(activity!!).get(DecideViewModel::class.java)
+        decideViewModel = ViewModelProviders.of(this).get(DecideViewModel::class.java)
         return inflater.inflate(R.layout.fragment_decide, container, false)
     }
 

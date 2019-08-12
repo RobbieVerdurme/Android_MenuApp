@@ -22,11 +22,12 @@ import com.example.boeferrob.menuapp.utils.LOGIN
  * the adapter gives the food a layout and fills it with the corresponding food
  * the adapter also has a filter build in to filter the food or ingredient that contains with the given text
  */
-class FoodRecyclerAdapter(private val context : Context, private var food: ArrayList<Food>, private  val viewModel: FoodListFragmentViewModel, private val logedin:Int) : Filterable, RecyclerView.Adapter<FoodRecyclerAdapter.ViewHolder>(){
+class FoodRecyclerAdapter(private val context : Context, private  val viewModel: FoodListFragmentViewModel, private val logedin:Int) : Filterable, RecyclerView.Adapter<FoodRecyclerAdapter.ViewHolder>(){
 
     /************************************************variablen*********************************************************/
     private val layoutInflater = LayoutInflater.from(context)
     private var filterListResult: ArrayList<Food>
+    private var food: ArrayList<Food> = arrayListOf()
     private lateinit var charSearch: String
 
     /**************************************************init************************************************************/

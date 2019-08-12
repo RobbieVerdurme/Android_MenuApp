@@ -27,7 +27,7 @@ class IngredientRecyclerAdapter(private val context : Context, private  val ingr
         return ViewHolder(itemView)
     }
 
-    override fun getItemCount() = ingredient.size //+ 1
+    override fun getItemCount() = ingredient.size
 
     override fun getItemViewType(position: Int): Int {
             return R.layout.item_ingredient_list
