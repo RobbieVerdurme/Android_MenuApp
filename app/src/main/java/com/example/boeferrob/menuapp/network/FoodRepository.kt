@@ -1,47 +1,68 @@
 package com.example.boeferrob.menuapp.network
 
 import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.content.Context
-import android.os.Debug
 import android.support.annotation.WorkerThread
 import com.example.boeferrob.menuapp.App
+import com.example.boeferrob.menuapp.Retrofit.FoodApi
 import com.example.boeferrob.menuapp.RoomDatabase.Dao.FoodDao
-import com.example.boeferrob.menuapp.RoomDatabase.Database.FoodDatabase
+import com.example.boeferrob.menuapp.RoomDatabase.Dao.FoodIngredientDao
+import com.example.boeferrob.menuapp.RoomDatabase.Dao.IngredientDao
 import com.example.boeferrob.menuapp.model.Food
+import com.example.boeferrob.menuapp.model.FoodIngredient
+import com.example.boeferrob.menuapp.model.Ingredient
+import javax.inject.Inject
 
 /**
  * this is the repository that communicates with the backend system
  * the repository is responsible for the get/update/set calls to the database
  */
-class FoodRepository(private val foodDao: FoodDao) {
+class FoodRepository(private val foodDao: FoodDao, private val ingredientDao: IngredientDao, private val foodIngredientDao: FoodIngredientDao) {
+    /******************************************VARIABLES***************************************************************/
     private var _allFood : LiveData<List<Food>>
 
+    /**********************************$********METHODS****************************************************************/
     init {
         App.appComponent.inject(this)
         _allFood = foodDao.getallFood()
     }
 
-    @WorkerThread
     fun insert(food: Food) {
         foodDao.insert(food)
+        for(ingredient in food.ingredients){
+            ingredientDao.insert(ingredient)
+            foodIngredientDao.insert(FoodIngredient(food.foodKey, ingredient.Ingredientkey))
+        }
     }
 
-    @WorkerThread
     fun update(food: Food) {
         foodDao.update(food)
-        //var foodindex = _allFood.value!!.indexOf(food)
+        for(ingredient in food.ingredients){
+            ingredientDao.update(ingredient)
+            foodIngredientDao.update(FoodIngredient(food.foodKey, ingredient.Ingredientkey))
+        }
     }
 
-    @WorkerThread
     fun delete(food: Food) {
         foodDao.delete(food)
+        for(ingredient in food.ingredients){
+            ingredientDao.delete(ingredient)
+            foodIngredientDao.delete(FoodIngredient(food.foodKey, ingredient.Ingredientkey))
+        }
     }
 
     fun getAllFood(): LiveData<List<Food>> {
+        if (_allFood.value == null){
+            return _allFood
+        }
+
+        _allFood.value!!.forEach {
+            val ingredientkeys = foodIngredientDao.getIngredientForFood(it.foodKey)
+            for(ingredientKey in ingredientkeys){
+                it.ingredients.add(ingredientDao.getIngredient(ingredientKey))
+            }
+        }
         return _allFood
     }
-
 }
     /*
     object Repostory{

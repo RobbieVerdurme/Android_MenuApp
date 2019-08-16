@@ -18,12 +18,12 @@ interface FoodApi {
     /**
      * Get a food object form the API
      */
-    @GET("/api/Posts/{icao}")
-    fun getFood(@Path("icao") icao: String) : Observable<Food>
+    @GET("/api/Food/{id}")
+    fun getFood(@Path("id") id: String) : Observable<Food>
 
     /**
      * Get a food list form the API
      */
-    @GET("/api/Posts")
+    @GET("/api/Food")
     fun getAllFood() : Observable<List<Food>>
 }

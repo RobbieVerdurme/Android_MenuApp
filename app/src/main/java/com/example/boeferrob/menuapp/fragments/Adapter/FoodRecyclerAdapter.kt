@@ -22,7 +22,7 @@ import com.example.boeferrob.menuapp.utils.LOGIN
  * the adapter gives the food a layout and fills it with the corresponding food
  * the adapter also has a filter build in to filter the food or ingredient that contains with the given text
  */
-class FoodRecyclerAdapter(private val context : Context, private  val viewModel: FoodListFragmentViewModel, private val logedin:Int) : Filterable, RecyclerView.Adapter<FoodRecyclerAdapter.ViewHolder>(){
+class FoodRecyclerAdapter(private val context : Context, private  val viewModel: FoodListFragmentViewModel) : Filterable, RecyclerView.Adapter<FoodRecyclerAdapter.ViewHolder>(){
 
     /************************************************variablen*********************************************************/
     private val layoutInflater = LayoutInflater.from(context)
@@ -117,7 +117,6 @@ class FoodRecyclerAdapter(private val context : Context, private  val viewModel:
             itemView.setOnClickListener{
                 val intent = Intent(context, FoodActivity::class.java)
                 val index = food.indexOf(filterListResult[adapterPosition])
-                intent.putExtra(LOGIN, logedin)
                 intent.putExtra(FOOD_POSITION, index)
                 context.startActivity(intent)
             }

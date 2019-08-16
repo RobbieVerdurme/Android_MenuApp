@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.activity_main.*
  */
 class MainActivity : AppCompatActivity(), DecideFragment.OnFragmentInteractionListener, FoodListFragment.OnFragmentInteractionListener{
     /************************************************variablen*********************************************************/
-    private var logedin: Int = POSITION_NOT_SET
+
 
     /************************************************Override**********************************************************/
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,10 +31,6 @@ class MainActivity : AppCompatActivity(), DecideFragment.OnFragmentInteractionLi
         toolbar.titleMarginStart = 50
         setSupportActionBar(toolbar)
 
-        logedin = intent.getIntExtra(LOGIN, POSITION_NOT_SET)
-        if(logedin == 0){
-            navigation.menu.findItem(R.id.navigation_login).isVisible = false
-        }
     }
 
     override fun onStart() {
@@ -59,7 +55,7 @@ class MainActivity : AppCompatActivity(), DecideFragment.OnFragmentInteractionLi
             override fun getItem(p0: Int): Fragment {
                 when(p0){
                     BaseFragment.DECIDE -> return DecideFragment.newInstance()
-                    BaseFragment.FOODLIST -> return FoodListFragment.newInstance(logedin)
+                    BaseFragment.FOODLIST -> return FoodListFragment.newInstance()
                 }
                 return DecideFragment()
             }

@@ -21,16 +21,7 @@ class FoodActivityViewModel : ViewModel() {
         foodList = foodFoodRepository.getAllFood()
     }
 
-    fun getLastIndexFood(): Int{
-        return  foodList.value!!.size
-    }
-
     fun addFood(food: Food){
-        /*
-        val foodListArrayList: ArrayList<Food>? = foodList.value as ArrayList<Food>
-        foodListArrayList!!.add(food)
-        foodList.value = foodListArrayList
-        */
         foodFoodRepository.insert(food)
     }
 

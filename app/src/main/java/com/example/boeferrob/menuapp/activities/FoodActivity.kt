@@ -35,7 +35,6 @@ import kotlinx.android.synthetic.main.item_add_ingredient_list.*
 class FoodActivity : AppCompatActivity() {
     /************************************************variablen*********************************************************/
     private var foodPosition = POSITION_NOT_SET
-    private var logedin = POSITION_NOT_SET
     private lateinit var food: Food
     lateinit var foodActivityViewModel: FoodActivityViewModel
 
@@ -58,17 +57,12 @@ class FoodActivity : AppCompatActivity() {
         foodPosition = savedInstanceState?.getInt(FOOD_POSITION, POSITION_NOT_SET)?:intent.getIntExtra(FOOD_POSITION, POSITION_NOT_SET)
 
         /**
-         * check if logged in
-         */
-        logedin = intent.getIntExtra(LOGIN, POSITION_NOT_SET)
-
-        /**
          *get food from list
          */
         if(foodPosition != POSITION_NOT_SET){
             food = foodActivityViewModel.getFood(foodPosition)
         }else {
-            food = Food(0,"", ArrayList<Ingredient>(), "")
+            food = Food("", ArrayList<Ingredient>(), "")
         }
 
         /**
@@ -198,18 +192,15 @@ class FoodActivity : AppCompatActivity() {
     }
 
     private fun saveFood() {
-        if (food.name.isBlank() or food.discritpion.isBlank()){
-            foodPosition = foodActivityViewModel.getLastIndexFood() + 1
-            foodActivityViewModel.addFood(food)
-        }
-
         if(checkRequiredFieldsFood()){
             food.name = txtTitleFood.text.toString()
             food.discritpion = txtDescriptionFood.text.toString()
-            foodActivityViewModel.saveFood(food)
-
+            if(foodPosition == POSITION_NOT_SET){
+                foodActivityViewModel.addFood(food)
+            }else{
+                foodActivityViewModel.saveFood(food)
+            }
             val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra(LOGIN, logedin)
             startActivity(intent)
         }
     }

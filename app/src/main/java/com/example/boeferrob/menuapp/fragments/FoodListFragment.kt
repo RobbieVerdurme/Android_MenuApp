@@ -38,12 +38,10 @@ class FoodListFragment : BaseFragment() {
     /************************************************variablen*********************************************************/
     private var listener: OnFragmentInteractionListener? = null
     private lateinit var foodListFragmentViewModel: FoodListFragmentViewModel
-    private var logedin = POSITION_NOT_SET
 
     /************************************************Override**********************************************************/
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         foodListFragmentViewModel = ViewModelProviders.of(activity!!).get(FoodListFragmentViewModel::class.java)
-        logedin = arguments?.getInt(LOGIN)?: POSITION_NOT_SET
         return inflater.inflate(R.layout.fragment_food_list, container, false)
     }
 
@@ -57,7 +55,6 @@ class FoodListFragment : BaseFragment() {
 
         fab.setOnClickListener{
             val activityIntent = Intent(activity, FoodActivity::class.java)
-            activityIntent.putExtra(LOGIN, logedin)
             startActivity(activityIntent)
         }
 
@@ -100,7 +97,7 @@ class FoodListFragment : BaseFragment() {
     }
     /************************************************Methods***********************************************************/
     private fun configureRecylcerView(){
-        val adapter = FoodRecyclerAdapter(activity!!, foodListFragmentViewModel, logedin)
+        val adapter = FoodRecyclerAdapter(activity!!, foodListFragmentViewModel)
         val layoutManager = LinearLayoutManager(activity)
         val swipeBackground: ColorDrawable = ColorDrawable(resources.getColor(R.color.colorAccent))
         val  deleteIcon: Drawable = ContextCompat.getDrawable(activity!!,R.drawable.ic_delete_black_24dp)!!
@@ -166,10 +163,9 @@ class FoodListFragment : BaseFragment() {
          * @return A new instance of fragment FoodListFragment.
          */
         @JvmStatic
-        fun newInstance(logedin: Int) =
+        fun newInstance() =
             FoodListFragment().apply {
                 arguments = Bundle().apply {
-                    putInt(LOGIN, logedin)
                 }
             }
     }

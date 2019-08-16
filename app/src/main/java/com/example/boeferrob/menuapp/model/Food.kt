@@ -8,15 +8,17 @@ import java.util.*
 @Entity(tableName = "Food")
 @Parcelize
 data class Food(
-    @PrimaryKey(autoGenerate = true)
-    var key: Int,
     var name: String,
     @Ignore
     var ingredients: MutableList<Ingredient> = mutableListOf(),
     var discritpion: String) : Parcelable  {
 
+    constructor() : this("", ArrayList<Ingredient>(), "")
 
-    constructor() : this(0,"", ArrayList<Ingredient>(), "")
+    @PrimaryKey(autoGenerate = true)
+    var foodKey: Int = 0
+
+
 
     override fun toString(): String {
         return name
