@@ -3,6 +3,9 @@
 
 ## Build with
 - kotlin: https://kotlinlang.org/
+- okHttp: https://square.github.io/okhttp/
+- retrofit: https://square.github.io/retrofit/
+- dagger: https://developer.android.com/training/dependency-injection/dagger-android
 - room: https://developer.android.com/topic/libraries/architecture/room
 - espresso: https://developer.android.com/training/testing/espresso
 
